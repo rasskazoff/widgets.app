@@ -3,7 +3,8 @@
   "description": "",
   "version": "1.0.0",
   "scripts": {
-    "start": "nodemon server"
+    "dev": "nodemon server",
+    "start": "pm2 start server"
   },
   "dependencies": {
     "@issr/core": "^2.0.0",
