@@ -1,0 +1,42 @@
+{
+    "123": {
+        "id": 123,
+        "widgets": {
+            "wa": {
+                "state": true,
+                "settings": {
+                    "number": "79994704111",
+                    "position": "right"
+                }
+            },
+            "phone": {
+                "settings": {
+                    "number": "79994704111",
+                    "position": "left",
+                    "color": "red"
+                },
+                "state": false
+            }
+        }
+    },
+    "1234": {
+        "id": 1234,
+        "widgets": {
+            "wa": {
+                "state": true,
+                "settings": {
+                    "number": "79994704111",
+                    "position": "right"
+                }
+            },
+            "phone": {
+                "settings": {
+                    "number": "79994704111",
+                    "position": "left",
+                    "color": "red"
+                },
+                "state": false
+            }
+        }
+    }
+}
