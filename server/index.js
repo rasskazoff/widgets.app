@@ -1,6 +1,6 @@
 const path = require( 'path' );
 
-// ignore `.scss` imports
+// ignore `style` imports
 require( 'ignore-styles' );
 
 // transpile imports on the fly
