@@ -2,7 +2,7 @@ const script = document.querySelector('script#widgets')
 const id = script.src.split('?').reverse()[0]
 
 const getWidgets = async (id)=>{
-    let url = `http://localhost:9000/api/widgets/?id=${id}`
+    let url = `http://95.163.235.185/api/widgets/?id=${id}`
     let response = await fetch(url)
     if (response.ok) {
       let data = await response.text()
