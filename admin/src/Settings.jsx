@@ -4,6 +4,8 @@ import { Title } from 'react-admin';
 import axios from 'axios'
 import WidgetsApp from './components/widgets/main'
 
+const domian = 'http://localhost:5000'
+
 const Settings = (props) => {
     const userID = props.userID
     const [ data, setData ] = useState(false)
@@ -11,7 +13,7 @@ const Settings = (props) => {
     useEffect(() => {
     const getWidgetsData = async (userID) => {
         try {
-          const response = await axios.get(`http://localhost:9000/api/getUserData/?id=${userID}`)
+          const response = await axios.get(`${domian}/api/getUserData/?id=${userID}`)
           return (
             setData(response.data)
             )
@@ -25,7 +27,7 @@ const Settings = (props) => {
     
     const setWidgetsData = async (data) => {
         try {
-            const response = await axios.post(`http://localhost:9000/api/setUserData`,{ data })
+            const response = await axios.post(`${domian}/api/setUserData`,{ data })
             return (
                 console.log(response)
             )
@@ -44,7 +46,7 @@ const Settings = (props) => {
                 <Box sx={{ width: '100%', display: 'inline-block' }}>
                     Ваш код для установки на сайт: 
                 </Box>
-                <Input sx={{ width: '100%', display: 'inline-block' }} value={`<script id="widgets" src="http://localhost:9000/api/getWidgets?${userID}"></script>`}></Input>
+                <Input sx={{ width: '100%', display: 'inline-block' }} value={`<script async id="widgets" src="${domian}/api/getWidgets?${userID}"></script>`}></Input>
             </CardContent>
             <CardContent>
                 <Box sx={{ width: '10em', display: 'inline-block' }}>
