@@ -33,9 +33,9 @@
                 "settings": {
                     "number": "79994704111",
                     "position": "left",
-                    "color": "red"
+                    "color": "blue"
                 },
-                "state": false
+                "state": true
             }
         }
     }

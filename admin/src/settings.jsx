@@ -1,16 +1,30 @@
 import { React, useState, useEffect } from 'react';
 import {Card, Box, CardContent, Switch, Button, Input} from '@mui/material';
+import Radio from '@mui/material/Radio';
 import { Title } from 'react-admin';
 import axios from 'axios'
 import WidgetsApp from './components/widgets/main'
 
-//const domian = 'http://localhost:5000' 
-const domian = 'http://95.163.235.185:5000'
+const domian = `http://${location.hostname}:5000`
+//const domian = 'http://95.163.235.185:5000'
 
 const Settings = (props) => {
     const userID = props.userID
     const [ data, setData ] = useState(false)
-    
+
+    //цвет виджета телефона
+    const handleChange = (event) => {
+        setData(data => ({
+            ...data, widgets : {
+                ...data.widgets, phone : {
+                    ...data.widgets.phone, settings : {
+                        ...data.widgets.phone.settings, color : event.target.value
+                    }
+                }
+            }
+        }))
+    }
+
     useEffect(() => {
     const getWidgetsData = async (userID) => {
         try {
@@ -64,26 +78,52 @@ const Settings = (props) => {
                             }))
                         }} />
             </CardContent>
-            <CardContent>
-                <Box sx={{ width: '10em', display: 'inline-block' }}>
-                    Расположение
-                </Box>
-                слева
-                <Switch checked={data ? (data.widgets.wa.settings.position == 'right' ? true : false) : false}
-                        onChange={() => {
-                            setData(data => ({
-                                ...data, widgets : {
-                                    ...data.widgets, wa : {
-                                        ...data.widgets.wa, settings : {
-                                            ...data.widgets.wa.settings, position : data.widgets.wa.settings.position == 'right' ? 'left' : 'right'
+            {(data ? data.widgets.wa.state : false) &&
+                <CardContent sx={{background:'#fafafa'}}>
+                    <CardContent>
+                        <Box sx={{ width: '10em', display: 'inline-block' }}>
+                            Номер телефона
+                        </Box>
+                        <Input
+                            placeholder='7 (999) 999 99 99'
+                            type="tel"
+                            onChange={(event) => {                            
+                                let phone = event.target.value.replace(/[^0-9]/g,"")
+                                setData(data => ({
+                                    ...data, widgets : {
+                                        ...data.widgets, wa : {
+                                            ...data.widgets.wa, settings : {
+                                                ...data.widgets.wa.settings, number : phone
+                                            }
                                         }
                                     }
-                                }
-                            }))
-                        }} />
-                справа
-                
-            </CardContent>
+                                }))
+                            }}
+                        >
+                        </Input>
+                    </CardContent>
+                    <CardContent>
+                        <Box sx={{ width: '10em', display: 'inline-block' }}>
+                            Расположение
+                        </Box>
+                        слева
+                        <Switch checked={data ? (data.widgets.wa.settings.position == 'right' ? true : false) : false}
+                                onChange={() => {
+                                    setData(data => ({
+                                        ...data, widgets : {
+                                            ...data.widgets, wa : {
+                                                ...data.widgets.wa, settings : {
+                                                    ...data.widgets.wa.settings, position : data.widgets.wa.settings.position == 'right' ? 'left' : 'right'
+                                                }
+                                            }
+                                        }
+                                    }))
+                                }} />
+                        справа
+                        
+                    </CardContent>
+                </CardContent>
+            }
 
             <CardContent>
                 <Box sx={{ width: '10em', display: 'inline-block' }}>
@@ -99,49 +139,100 @@ const Settings = (props) => {
                                 }
                             }))
                         }} />
-        
-                <Box sx={{ width: '10em', display: 'inline-block' }}>
-                    Расположение
-                </Box>
-                слева
-                <Switch checked={data ? (data.widgets.phone.settings.position == 'right' ? true : false) : false}
-                        onChange={() => {
-                            setData(data => ({
-                                ...data, widgets : {
-                                    ...data.widgets, phone : {
-                                        ...data.widgets.phone, settings : {
-                                            ...data.widgets.phone.settings, position : data.widgets.phone.settings.position == 'right' ? 'left' : 'right'
+            </CardContent>
+               
+            {(data ? data.widgets.phone.state : false) &&
+                <CardContent sx={{background:'#fafafa'}}>
+                    <CardContent>
+                        <Box sx={{ width: '10em', display: 'inline-block' }}>
+                            Номер телефона
+                        </Box>
+                        <Input
+                            placeholder='7 (999) 999 99 99'
+                            type="tel"
+                            onChange={(event) => {                            
+                                let phone = event.target.value.replace(/[^0-9]/g,"")
+                                setData(data => ({
+                                    ...data, widgets : {
+                                        ...data.widgets, phone : {
+                                            ...data.widgets.phone, settings : {
+                                                ...data.widgets.phone.settings, number : phone
+                                            }
                                         }
                                     }
-                                }
-                            }))
-                        }} />
-                справа
-                
-                <Button sx={{background: 'green'}} onClick={() => {
-                        setData(data => ({
-                            ...data, widgets : {
-                                ...data.widgets, phone : {
-                                    ...data.widgets.phone, settings : {
-                                        ...data.widgets.phone.settings, color : 'green'
-                                    }
-                                }
-                            }
-                        }))
-                    }}>green</Button>
-                <Button sx={{background: 'blue'}} onClick={() => {
-                        setData(data => ({
-                            ...data, widgets : {
-                                ...data.widgets, phone : {
-                                    ...data.widgets.phone, settings : {
-                                        ...data.widgets.phone.settings, color : 'blue'
-                                    }
-                                }
-                            }
-                        }))
-                    }}>blue</Button>
-            </CardContent>
+                                }))
+                            }}
+                            >
+                        </Input>
+                    </CardContent>
+                    <CardContent>
+                        <Box sx={{ width: '10em', display: 'inline-block' }}>
+                            Расположение
+                        </Box>
+                        слева
+                        <Switch checked={data ? (data.widgets.phone.settings.position == 'right' ? true : false) : false}
+                                onChange={() => {
+                                    setData(data => ({
+                                        ...data, widgets : {
+                                            ...data.widgets, phone : {
+                                                ...data.widgets.phone, settings : {
+                                                    ...data.widgets.phone.settings, position : data.widgets.phone.settings.position == 'right' ? 'left' : 'right'
+                                                }
+                                            }
+                                        }
+                                    }))
+                                }} />
+                        справа
+                    </CardContent>
+                    <CardContent>
+                        <Box sx={{ width: '10em', display: 'inline-block' }}>
+                            Цвет
+                        </Box>
 
+                    <Radio
+                        checked={data ? data.widgets.phone.settings.color == 'red' : false}
+                        onChange={handleChange}
+                        value="red"
+                        name="color"
+                    />
+                    <Radio
+                        checked={data ? data.widgets.phone.settings.color == 'blue' : false}
+                        onChange={handleChange}
+                        value={'blue'}
+                        sx={{ color: 'blue' }}
+                        name="color"
+                    />
+                    <Radio
+                        checked={data ? data.widgets.phone.settings.color == 'green' : false}
+                        onChange={handleChange}
+                        value={'green'}
+                        sx={{ color: 'green'}}
+                        name="color"
+                    />
+                    <Radio
+                        checked={data ? data.widgets.phone.settings.color == 'yellow' : false}
+                        onChange={handleChange}
+                        value={'yellow'}
+                        sx={{ color: 'yellow' }}
+                        name="color"
+                    />
+                    <Radio
+                        checked={data ? data.widgets.phone.settings.color == 'black' : false}
+                        onChange={handleChange}
+                        value={'black'}
+                        sx={{ color: 'black' }}
+                        name="color"
+                    />
+                    <Radio
+                        checked={data ? data.widgets.phone.settings.color == 'purple' : false}
+                        onChange={handleChange}
+                        value={'purple'}
+                        sx={{ color: 'purple' }}
+                        name="color"
+                    />
+                    </CardContent>
+                </CardContent>
+            }
             <CardContent>
                 <Button onClick={() => {
                         setWidgetsData(data)

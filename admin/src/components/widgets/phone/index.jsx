@@ -23,6 +23,7 @@ const Phone = (props) => {
                 width: 56px;
                 height: 56px;
                 box-shadow: 0px 4px 8px rgb(0 0 0 / 16%);
+                ${settings.position == 'right' ? 'transform: scale(-1, 1);' : ''}
             }
             .p-btn__icon{
                 width: 50%;
