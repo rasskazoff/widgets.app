@@ -19,10 +19,6 @@ const App = () => (
    <Admin theme={theme} authProvider={authProvider} dataProvider={dataProvider}>
      <Resource name="settings" list={UserList}/>
      <Resource name="users" list={UserList} />
-      <CustomRoutes>
-        <Route path="/settings" element={<Settings userID="1234" />} />
-      </CustomRoutes>
-      
    </Admin>
   );
 
