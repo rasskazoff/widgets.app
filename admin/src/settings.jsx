@@ -4,7 +4,8 @@ import { Title } from 'react-admin';
 import axios from 'axios'
 import WidgetsApp from './components/widgets/main'
 
-const domian = 'http://localhost:5000'
+//const domian = 'http://localhost:5000' 
+const domian = 'http://95.163.235.185:5000'
 
 const Settings = (props) => {
     const userID = props.userID
